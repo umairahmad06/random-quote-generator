@@ -33,6 +33,8 @@ const quotes = [
 
 var initialQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
+const url = `https://twitter.com/intent/tweet?text=`;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -53,17 +55,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="App">
-        <div id="quotebox">
-          <div id="quote-container">
-            <h3 id="text">{this.state.text}</h3>
-          </div>
-          <p id="author">{this.state.author}</p>
-          <div>
-            <button id="new-quote" onClick={() => this.handleQuote()}>
-              New Quote
-            </button>
-          </div>
+      <div id="quote-box">
+        <h3 id="text">{this.state.text}</h3>
+        <p id="author">{this.state.author}</p>
+        <div>
+          <button id="new-quote" onClick={() => this.handleQuote()}>
+            New Quote
+          </button>
+
+          <a
+            class="twitter-share-button"
+            id="tweet-quote"
+            href={url + this.state.text}
+            data-text={this.state.text}
+          >
+            Tweet
+          </a>
         </div>
       </div>
     );
