@@ -1,7 +1,10 @@
 import "./AppStyle.css";
 import "./Components/styles.css";
+import "antd/dist/antd.css";
 
+import { Button } from "antd";
 import React from "react";
+import { TwitterOutlined } from "@ant-design/icons";
 
 const quotes = [
   {
@@ -56,21 +59,36 @@ class App extends React.Component {
   render() {
     return (
       <div id="quote-box">
-        <h3 id="text">{this.state.text}</h3>
-        <p id="author">{this.state.author}</p>
-        <div>
-          <button id="new-quote" onClick={() => this.handleQuote()}>
-            New Quote
-          </button>
+        <div id="quote-container">
+          <h3 id="text">{this.state.text}</h3>
+        </div>
+        <div id="author-box">
+          <p id="author">{this.state.author}</p>
+        </div>
 
-          <a
-            class="twitter-share-button"
-            id="tweet-quote"
-            href={url + this.state.text}
-            data-text={this.state.text}
-          >
-            Tweet
-          </a>
+        <div id="footer">
+          <div className="quote-button-container">
+            <a
+              className="twitter-share-button"
+              id="tweet-quote"
+              target="_top"
+              href={url + this.state.text}
+              data-text={this.state.text}
+            >
+              <Button type="primary" icon={<TwitterOutlined />} size="default">
+                Tweet
+              </Button>
+            </a>
+          </div>
+          <div className="quote-button-container">
+            <Button
+              type="primary"
+              id="new-quote"
+              onClick={() => this.handleQuote()}
+            >
+              New Quote
+            </Button>
+          </div>
         </div>
       </div>
     );
